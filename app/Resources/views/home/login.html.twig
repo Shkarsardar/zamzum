@@ -1,8 +1,29 @@
 {% extends "base.html.twig" %}
 {% block title %}
-    Welcome To Zamzum
+        Login
 {% endblock %}
 {% block body %}
+<div class="container">
+    {% if error %}
+        <div class="alert alert-danger mt-5">
+            <p>{{ error.messageKey }}</p>
+        </div>
+    {% endif %}
+    
+    <form action="{{ path("login") }}" method="post">
+        <div class="input-group mt-3">
+            <label for="Username">Username</label>
+            <input type="text" name="_username" id="Username" value="{{ last_user }}" id="" class="form-control">
+            
+        </div>
+        <div class="input-group mt-3">
+            <label >Password</label>
+            <input type="text" name="_password"  class="form-control">
+            
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
 
+    </form>
+</div>
 
 {% endblock %}

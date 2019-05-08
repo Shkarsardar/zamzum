@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\User\User;
 use AppBundle\Form\UserType;
-
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class DefaultController extends AbstractController
 {
@@ -45,8 +45,15 @@ class DefaultController extends AbstractController
      *
      * @return void
      */
-    public function login()
+    public function login(AuthenticationUtils $authenticationUtils)
     {
+        $error=$authenticationUtils->getLastAuthenticationError();
+        $lastUser=$authenticationUtils->getLastUsername();
+        return $this->render('home/login.html.twig',[
+            'last_user'=>$lastUser,
+            'error'=>$error
+        ]);
+
 
     }
 
