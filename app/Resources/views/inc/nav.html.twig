@@ -7,12 +7,28 @@
     </button>
     <div class="collapse navbar-collapse" id="nav">
         <ul class="navbar-nav ml-auto">
+            {% if app.user.username is defined  %}
+            <li class="nav-item">
+                <a  class="nav-link" href="{{ path("upload") }}"><i class="fas fa-upload"></i> Upload</a>
+
+            </li>
+                <li class="nav-item">
+                    <a  class="nav-link" href="{{ path("dashboard") }}">MyChannel</a>
+
+                </li>
+                <li class="nav-item">
+                    <a  class="nav-link" href="{{ path("logout") }}">Logout</a>
+                </li>
+
+                    
+            {% else %}
             <li class="nav-item">
                 <a href="{{ path('login') }}" class="nav-link">SignIn</a>
             </li>
             <li class="nav-item">
                 <a href="{{ path('register') }}" class="nav-link">SignUp</a>
             </li>
+            {% endif %}
                 
         </ul>
     </div>

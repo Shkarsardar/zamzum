@@ -3,5 +3,14 @@
     User Dashboard
 {% endblock %}
 {% block body %}
-
+<div class="container">
+    <div class="row">
+        {% for video in videos %}
+        <div class="col-md-4">
+            
+            <a class="nav-link" href="/videos/{{video.videoFileName}}">{{ video.title }}</a>
+        </div>        
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Video
@@ -50,9 +51,9 @@ class Video
      */
     private $publishDate;
     /**
-     * @ORM\Column(name="filename",type="string",length=255)
-     *
-     * 
+     * @ORM\Column(name="filename",type="string")
+     * @Assert\NotBlank(message="Please Upload Your Video")
+     * @Assert\File(mimeTypes={"video/mp4"})
      */
     private $videoFileName;
 
@@ -153,8 +154,29 @@ class Video
      */ 
     public function setPublishDate()
     {
-        $this->publishDate = new DateTime();
+        $this->publishDate = new \DateTime('NOW');
+
         
+        return $this;
+    }
+
+    /**
+     * Get the value of videoFileName
+     */ 
+    public function getVideoFileName()
+    {
+        return $this->videoFileName;
+    }
+
+    /**
+     * Set the value of videoFileName
+     *
+     * @return  self
+     */ 
+    public function setVideoFileName($videoFileName)
+    {
+        $this->videoFileName = $videoFileName;
+
         return $this;
     }
 }

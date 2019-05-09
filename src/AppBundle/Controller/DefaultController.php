@@ -66,6 +66,13 @@ class DefaultController extends AbstractController
 
 
     }
+    /**
+     * @Route("/logout",name="logout")
+     *
+     * @return void
+     */
+    public function logout()
+    {
 
-
+    }
 }
