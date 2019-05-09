@@ -1,4 +1,6 @@
 <?php
+namespace AppBundle\Controller;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -11,7 +13,7 @@ class SubscribeController extends AbstractController
      */
     public function subscribeAction()
     {
-        
+
     }
 
 }

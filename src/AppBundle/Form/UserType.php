@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use AppBundle\Entity\User as UserEntity;
 
 class UserType extends AbstractType
 {
@@ -15,7 +16,7 @@ class UserType extends AbstractType
         $options=['attr'=>['class'=>'form-control']];
         $builder->add('email',EmailType::class,$options)
         ->add('username',TextType::class,$options)
-        ->add('password',RepeatedType::class,
+        ->add('plainPassword',RepeatedType::class,
         [
             'type'=>PasswordType::class,
             'first_options'=>['label'=>'password','attr'=>$options['attr']],
@@ -23,6 +24,13 @@ class UserType extends AbstractType
             
 
             
+
+        ]);
+    }
+    public function configureOptions(\Symfony\Component\OptionsResolver\OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class'=>UserEntity::class
 
         ]);
     }

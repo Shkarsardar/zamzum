@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\User\User;
 use AppBundle\Form\UserType;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use AppBundle\Entity\User as AppBundleUser;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class DefaultController extends AbstractController
 {
@@ -26,15 +28,23 @@ class DefaultController extends AbstractController
      *
      * @return void
      */
-    public function register(Request $request)
+    public function register(Request $request,UserPasswordEncoderInterface $encoder)
     {
-        $form=$this->createForm(UserType::class);
+        $user=new AppBundleUser();
+
+        $form=$this->createForm(UserType::class,$user);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
-            print_r($form->getData());
+            $password=$encoder->encodePassword($user,$user->getPlainPassword());
+            $user->setPassword($password);
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
             
+            return $this->redirectToRoute('login');
+
         }
         return $this->render("home/register.html.twig",['form'=>$form->createView()]);
 
