@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        {% for video in result %}
+        <div class="col-md">
+
+            <a href="{{ path("watch",{'video_id':video.videoFileName|split('.',2)|first}) }}">{{ video.title }}</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

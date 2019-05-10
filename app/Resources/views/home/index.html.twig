@@ -3,7 +3,7 @@
     Zamzum video
 {% endblock %}
 {% block body %}
-<form  method="get">
+<form action="{{ path('search') }}"  method="POST">
     <div class="input-group">
         <input type="text" name="form[search]" class="form-control border-0" placeholder="search For Something">
     </div>
@@ -14,9 +14,11 @@
         <div class="container">
             {# Latest Video upload icon #}
             <div class="row">
-                <div class="col-md-3">
-
-                </div>
+                {% for video in videos  %}
+                    <div class="col-md-3">
+                        <a href="{{ path("watch",{'video_id':video.videoFileName|split('.',2)|first}) }}">{{ video.title }}</a>
+                    </div>
+                {% endfor %}
             </div>
         </div>
 </section>

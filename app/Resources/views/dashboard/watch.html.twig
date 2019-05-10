@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+{% block title %}Watch Current Video {% endblock %}
+{% block body %}
+    <div class="container mt-3">
+    <video width="800 " height="400"  controls>
+        <source src="{{ video }}" type="video/mp4" />
+    </video>
+</div>
+{% endblock %}

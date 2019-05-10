@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Controller;
+use AppBundle\Entity\Video;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,8 +20,9 @@ class DefaultController extends AbstractController
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render("home/index.html.twig");
+        $videos=$this->getDoctrine()->getRepository(Video::class)->findAll();
+        return $this->render("home/index.html.twig",['videos'=>$videos]);
+        
 
     }
     /**

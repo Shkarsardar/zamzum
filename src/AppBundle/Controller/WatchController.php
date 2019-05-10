@@ -8,12 +8,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class WatchController extends AbstractController
 {
     /**
-     * @Route("/dashboard/watch/{watch_id}")
+     * @Route("/watch/{video_id}",name="watch")
      */
-    public function watchVideoAction($watch_id)
+    public function watchVideoAction($video_id)
     {
+        $video='/videos/'.$video_id.".mp4";
 
-        return $this->render('dashboard/watch.html.twig');
+        return $this->render('dashboard/watch.html.twig',['video'=>$video]);
+        
         
 
     }

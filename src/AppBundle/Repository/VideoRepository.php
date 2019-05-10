@@ -10,4 +10,11 @@ namespace AppBundle\Repository;
  */
 class VideoRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function searchVideo($text)
+    {
+        return $this->getEntityManager()->createQuery(
+            'SELECT video FROM AppBundle:Video video where video.title like :title'
+        )->setParameter('title',"%".$text."%")->getResult();
+
+    }
 }
