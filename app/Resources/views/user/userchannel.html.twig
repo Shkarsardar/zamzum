@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<section class="mt-4 bg-light">
+    <div class="container">
+        <h1 class="display-3 text-muted" >{{ user.username}}</h1>
+        {% for video in videos %}
+            <p> <a href="{{ path("watch",{'video_id':video.videoFileName|split('.',2)|first}) }}">{{ video.title }}</a></p>
+
+        {% endfor %}
+        
+    </div>
+
+</section>
+{% endblock %}

@@ -17,4 +17,14 @@ class VideoRepository extends \Doctrine\ORM\EntityRepository
         )->setParameter('title',"%".$text."%")->getResult();
 
     }
+    public function getVideoAndUser()
+    {
+        return $this->getEntityManager()->createQuery('SELECT video FROM AppBundle:Video video LEFT JOIN AppBundle:User user WITH video.uploaderId=user.id ')->getResult();
+
+    }
+    public function getUserVideos($id)
+    {
+        return $this->getEntityManager()->createQuery('SELECT video FROM AppBundle:Video video where video.uploaderId=:id ')->setParameter('id',$id)->getResult();
+        
+    }
 }

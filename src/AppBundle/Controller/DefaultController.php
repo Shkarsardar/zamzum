@@ -20,7 +20,10 @@ class DefaultController extends AbstractController
      */
     public function indexAction(Request $request)
     {
-        $videos=$this->getDoctrine()->getRepository(Video::class)->findAll();
+
+        $videos=$this->getDoctrine()->getRepository(Video::class)->getVideoAndUser();
+        
+        
         return $this->render("home/index.html.twig",['videos'=>$videos]);
         
 

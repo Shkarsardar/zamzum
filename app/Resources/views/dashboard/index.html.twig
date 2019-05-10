@@ -4,10 +4,12 @@
 {% endblock %}
 {% block body %}
 <div class="container">
+    <h1 class="text-muted">Your Videos</h1>
     <div class="row">
         {% for video in videos %}
-        <div class="col-md-4">
-            <a class="nav-link" href="{{ path('watch',{'video_id':video.videoFileName|split('.',2)|first}) }}">{{ video.title }}</a>
+        <div class="col-md-12">
+            <p> <a class="nav-link" href="{{ path('watch',{'video_id':video.videoFileName|split('.',2)|first}) }}">{{ video.title }}</a> by <span><a href="{{ path('show_user',{'user':video.uploaderId.id}) }}">{{ video.uploaderId.username }}</a></span>
+            </p>
         </div>        
         {% endfor %}
     </div>

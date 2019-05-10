@@ -5,7 +5,7 @@
 {% block body %}
 <form action="{{ path('search') }}"  method="POST">
     <div class="input-group">
-        <input type="text" name="form[search]" class="form-control border-0" placeholder="search For Something">
+        <input type="text" name="form[search]" class="form-control border-0" placeholder="Search">
     </div>
 </form>
     
@@ -13,11 +13,19 @@
         
         <div class="container">
             {# Latest Video upload icon #}
+            <h1 class="text-muted">Zamzum Videos</h1>
             <div class="row">
                 {% for video in videos  %}
                     <div class="col-md-3">
-                        <a href="{{ path("watch",{'video_id':video.videoFileName|split('.',2)|first}) }}">{{ video.title }}</a>
+                        <h6><a href="{{ path("watch",{'video_id':video.videoFileName|split('.',2)|first}) }}">{{ video.title }}</a>
+                        by <span> <a href="{{ path('show_user',{'user':video.uploaderId.id}) }}">{{ video.uploaderId.username }}</a>  </span>
+                        
+                        </h6>
+
+                        
+
                     </div>
+                    
                 {% endfor %}
             </div>
         </div>

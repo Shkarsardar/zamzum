@@ -22,7 +22,6 @@ class SearchController extends AbstractController
         {
             $formData=$form->getData();
             $result=$repo->searchVideo($formData['search']);
-            var_dump($result);
             
             return $this->render('search/search.html.twig',['result'=>$result]);
 
