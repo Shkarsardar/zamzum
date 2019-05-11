@@ -24,16 +24,16 @@ class Subscribe
     /**
      * @var int
      *
-     * @ORM\Column(name="subscriber_id", type="integer")
+     * @ORM\Column(name="subscriber", type="integer")
      */
-    private $subscriberId;
+    private $subscriber;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="channel_id", type="integer")
+     * @ORM\Column(name="channler", type="integer")
      */
-    private $channelId;
+    private $channler;
 
 
     /**
@@ -47,51 +47,51 @@ class Subscribe
     }
 
     /**
-     * Set subscriberId
+     * Set subscriber
      *
-     * @param integer $subscriberId
+     * @param integer $subscriber
      *
      * @return Subscribe
      */
-    public function setSubscriberId($subscriberId)
+    public function setSubscriber($subscriber)
     {
-        $this->subscriberId = $subscriberId;
+        $this->subscriber = $subscriber;
 
         return $this;
     }
 
     /**
-     * Get subscriberId
+     * Get subscriber
      *
      * @return int
      */
-    public function getSubscriberId()
+    public function getSubscriber()
     {
-        return $this->subscriberId;
+        return $this->subscriber;
     }
 
     /**
-     * Set channelId
+     * Set channler
      *
-     * @param integer $channelId
+     * @param integer $channler
      *
      * @return Subscribe
      */
-    public function setChannelId($channelId)
+    public function setChannler($channler)
     {
-        $this->channelId = $channelId;
+        $this->channler = $channler;
 
         return $this;
     }
 
     /**
-     * Get channelId
+     * Get channler
      *
      * @return int
      */
-    public function getChannelId()
+    public function getChannler()
     {
-        return $this->channelId;
+        return $this->channler;
     }
 }
 

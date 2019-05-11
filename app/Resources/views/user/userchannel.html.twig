@@ -1,14 +1,37 @@
 {% extends "base.html.twig" %}
 {% block body %}
-<section class="mt-4 bg-light">
-    <div class="container">
-        <h1 class="display-3 text-muted" >{{ user.username}}</h1>
-        {% for video in videos %}
-            <p> <a href="{{ path("watch",{'video_id':video.videoFileName|split('.',2)|first}) }}">{{ video.title }}</a></p>
 
+    <div class="container mt-1">
+        {% for type,flash_message in app.session.flashBag.all %}
+            {% for msg in flash_message %}
+                <div class="alert alert-{{ type }}">
+                    <p>{{ msg }}</p>
+                </div>
+            {% endfor %}
         {% endfor %}
-        
+
     </div>
 
-</section>
+    <section class="mt-4 bg-light">
+
+
+        <div class="container">
+
+
+            <h1 class="display-3 text-muted text-left">{{ user.username}}</h1>
+
+            <a href="{{ path("subscribe",{'channelId':user.id}) }}" class="btn btn-primary">Subscribe Channel</a>
+
+
+            {% for video in videos %}
+                <p>
+                    <a href="{{ path("watch",{'video_id':video.videoFileName|split('.',2)|first}) }}">{{ video.title }}</a>
+                </p>
+
+            {% endfor %}
+
+
+        </div>
+
+    </section>
 {% endblock %}
