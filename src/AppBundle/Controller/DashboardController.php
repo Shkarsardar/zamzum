@@ -7,6 +7,7 @@ use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use AppBundle\Entity\Video;
+use AppBundle\Entity\Subscribe;
 
 class DashboardController extends AbstractController
 {
@@ -32,10 +33,14 @@ class DashboardController extends AbstractController
     {
         $findUser=$this->getDoctrine()->getRepository(User::class)->find($user);
         $userVideos=$this->getDoctrine()->getRepository(Video::class)->getUserVideos($user);
+        $userSubscribes=$this->getDoctrine()->getRepository(Subscribe::class)->countSubscribe($user);
         
+
         if($findUser)
         {
-            return $this->render('user/userchannel.html.twig',['user'=>$findUser,'videos'=>$userVideos]);
+            $isUserSubscribed=$this->getDoctrine()->getRepository(Subscribe::class)->isChannelSubscribed($this->getUser()->getID(),$user);
+            return $this->render('user/userchannel.html.twig',['user'=>$findUser,'videos'=>$userVideos,'isSubscribed'=>$isUserSubscribed,'userSubCount'=>$userSubscribes[1]]);
+
 
         }
         else

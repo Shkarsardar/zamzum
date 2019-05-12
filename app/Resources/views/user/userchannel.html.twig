@@ -18,10 +18,17 @@
         <div class="container">
 
 
-            <h1 class="display-3 text-muted text-left">{{ user.username}}</h1>
+            <h1 class="display-3 text-muted text-left">{{ user.username}}</h1> 
+            <h3 class="text-black-50" > Total Subscribe: {{ userSubCount }}</h3>
+            {% if isSubscribed is empty  %}
+                <a href="{{ path("subscribe",{'channelId':user.id}) }}" class="btn btn-primary">Subscribe </a>
+                {% else %}         
+                <a href="{{ path("subscribe",{'channelId':user.id}) }}" class="btn btn-outline-primary">Unsubscribe</a>
 
-            <a href="{{ path("subscribe",{'channelId':user.id}) }}" class="btn btn-primary">Subscribe Channel</a>
 
+            {% endif %}
+            
+            
 
             {% for video in videos %}
                 <p>

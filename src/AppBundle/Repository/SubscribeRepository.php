@@ -19,7 +19,22 @@ class SubscribeRepository extends \Doctrine\ORM\EntityRepository
     }
     public function isChannelSubscribed($subsriber,$channel)
     {
-        return $this->getEntityManager()->createQuery('SELECT users FROM AppBundle:Subscribe users where users.subscriber=:id and users.channler=:id2 ')->setParameters(['id'=>$subsriber,'id2'=>$channel])->getResult();
+        return $this->
+        getEntityManager()->
+        createQuery('SELECT users FROM AppBundle:Subscribe users where users.subscriber=:id and users.channler=:id2 ')->
+        setParameters(['id'=>$subsriber,'id2'=>$channel])
+        ->getResult();
+    }
+    public function countSubscribe($channel)
+    {
+        $dq=$this->
+        getEntityManager()->
+        createQuery("SELECT COUNT(user.channler) FROM AppBundle:Subscribe user WHERE user.channler= :channel")->
+        setParameter('channel',$channel)->
+        getSingleResult();
+
+        return $dq;
+
 
 
     }

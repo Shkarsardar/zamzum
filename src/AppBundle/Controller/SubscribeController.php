@@ -43,7 +43,7 @@ class SubscribeController extends AbstractController
             }
         }
         
-        return new Response("Hello ");
+        
 
     }
 
